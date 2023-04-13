@@ -51,3 +51,17 @@ Route::get('/delete', function () {
     }
     //$user->roles()->delete();
 });
+Route::get('/attach', function () {
+    $user = User::findOrFail(1);
+    $user->roles()->attach(2);
+});
+Route::get('/detach', function () {
+    $user = User::findOrFail(1);
+    $user->roles()->detach(2);
+});
+//this will make these and delete the rest
+Route::get('/sync', function () {
+    $user = User::findOrFail(1);
+    //must be an array
+    $user->roles()->sync([1,2]);
+});
